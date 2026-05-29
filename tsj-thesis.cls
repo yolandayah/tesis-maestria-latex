@@ -49,7 +49,6 @@
 %\rule{3pt}{0.8\textheight}
 %\end{minipage}}
 
-\begin{minipage}{0.9\textwidth}
 \begin{center}
 \null\bigskip\bigskip\bigskip
 \huge\textbf{\thetitle}
@@ -66,19 +65,14 @@
 \bigskip\bigskip\bigskip
 \begin{center} \large
 \begin{tabular}{rl}
-Director de tesis: & \textbf{\thedirector}
-\ifdefined\MYCODIRECTOR
-	\\ Codirector de tesis: & \textbf{\thecodirector} \\
-\else
-	\\
-\fi
+Director de tesis: & \textbf{\thedirector} \\
+\@ifundefined{MYCODIRECTOR}{}{Codirector de tesis: & \textbf{\thecodirector} \\}
 \end{tabular}
 \end{center}
 \bigskip\bigskip\bigskip
 \begin{center}
 Zapopan, Jalisco, México \\[0.5\baselineskip] \thedate
 \end{center}
-\end{minipage}
 \end{titlepage}}
 
 \newenvironment{dedicatoria}
