@@ -88,3 +88,7 @@ Zapopan, Jalisco, México \\[0.5\baselineskip] \thedate
 \pagenumbering{Roman}
 \newcommand{\frontmatter}{\cleardoublepage\pagenumbering{Roman}}
 \newcommand{\mainmatter}{\cleardoublepage\pagenumbering{arabic}}
+\newcommand\backmatter{\cleardoublepage}
+
+\normalsize
+\endinput
