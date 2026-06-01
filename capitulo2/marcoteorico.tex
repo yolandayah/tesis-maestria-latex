@@ -8,7 +8,7 @@
 \lipsum[1]
 \cite{knuthwebsite}
 
-\section{Tecnologías utilizadas}
+\section{Sistema web}
 
 \subsection{PHP (Hypertext Preprocessor)}
 
@@ -46,18 +46,87 @@ principalmente por los siguientes factores:
 		el mantenimiento del código a largo plazo.
 \end{itemize}
 
-\subsection{Otro título cualquiera}
+\subsection{El Framework Laravel}
 
-%% Quita la siguiente linea es solo para hacer texto aleatorio.
-\lipsum[2-4]
+Para la estructuración y el desarrollo de la aplicación web, se
+implementó Laravel, un framework de código abierto basado en PHP y
+diseñado bajo el patrón de arquitectura Modelo-Vista-Controlador (MVC)
+\parencite{otwell_laravel_2026}. Desde su concepción, Laravel ha tenido
+como objetivo simplificar las tareas comunes en el desarrollo de software
+web —como la autenticación, el enrutamiento, las sesiones y el
+almacenamiento en caché— sin sacrificar la flexibilidad ni la
+escalabilidad del sistema.
 
-\subsection{Otro más título cualquiera}
+La integración de Laravel en la arquitectura del proyecto aporta ventajas
+metodológicas y técnicas fundamentales:
 
-%% Quita la siguiente linea es solo para hacer texto aleatorio.
-\lipsum[5-6]
+\begin{itemize}
+	\item Abstracción de la Base de Datos: A través de Eloquent ORM
+		(Object-Relational Mapping), el framework permite interactuar
+		con la base de datos mediante programación orientada a objetos
+		en lugar de consultas SQL nativas. Esto no solo incrementa la
+		seguridad contra ataques de inyección SQL, sino que además
+		facilita la migración y consistencia de los datos mediante el
+		uso de Migrations.
 
-\section{Nueva sección}
+	\item Seguridad Integrada: Laravel provee mecanismos robustos
+		y preconfigurados para mitigar las vulnerabilidades web más
+		comunes, tales como la falsificación de peticiones en sitios
+		cruzados (CSRF), la secuencia de comandos en sitios cruzados
+		(XSS) y la encriptación de datos sensibles.
 
-%% Quita la siguiente linea es solo para hacer texto aleatorio.
-\lipsum[1-3]
+	\item Ecosistema y Modularidad: La herramienta cuenta con un
+		sistema de empaquetado y gestión de dependencias (a través de
+		Composer) que permite la reutilización de componentes y la
+		integración de servicios externos de manera limpia, acelerando
+		el ciclo de desarrollo y garantizando un código mantenible.
+\end{itemize}
+
+Al combinar la robustez y velocidad de PHP en su versión actual
+con la estructura organizada de Laravel, se garantiza una plataforma
+backend eficiente, segura y adaptable a futuras expansiones o
+requerimientos del sistema.
+
+\section{Plataforma de hardware utilizada}
+
+Para el despliegue físico y la ejecución del sistema, se seleccionó la
+computadora de placa única (SBC, por sus siglas en inglés Single Board
+Computer) Raspberry Pi. Este hardware de código abierto está diseñado
+sobre una arquitectura ARM y destaca por su tamaño compacto, bajo
+consumo energético y su capacidad para ejecutar sistemas operativos
+basados en Linux de manera nativa \parencite{raspberry_pi_2026}.
+
+\subsection{Raspberry Pi como Plataforma de Despliegue}
+
+En el contexto de este proyecto, la Raspberry Pi actúa como el servidor
+local (o nodo central), encargándose de alojar el servidor web, el
+intérprete de PHP y el motor de bases de datos. Su inclusión en la
+arquitectura de hardware se justifica por los siguientes aspectos
+técnicos y metodológicos:
+
+\begin{itemize}
+	\item Eficiencia de Recursos y Costo: Ofrece una relación
+		costo-rendimiento óptima para proyectos de investigación y prototipado.
+		Permite simular un entorno de producción real en un servidor dedicado
+		sin incurrir en los costos recurrentes de infraestructura en la nube.
+
+	\item Compatibilidad con el Entorno LAMP/LEMP: Al ejecutar distribuciones
+		oficiales como Raspberry Pi OS (basada en Debian), el hardware es
+		plenamente compatible con servidores web como Apache o Nginx,
+		permitiendo el montaje del entorno necesario para ejecutar Laravel de
+		forma idéntica a un servidor web comercial.
+
+	\item Consumo Energético y Portabilidad: Su bajo requerimiento de
+		energía (típicamente alimentado por USB-C a 5V) y su reducido factor
+		de forma facilitan el despliegue del sistema en entornos aislados o
+		embebidos, lo que aporta un valor agregado de portabilidad a la
+		solución propuesta.
+\end{itemize}
+
+Con la integración de este hardware, el proyecto demuestra que la combinación
+de PHP y Laravel no solo es viable en servidores empresariales, sino que
+también es capaz de operar de manera fluida y eficiente en arquitecturas
+de hardware limitado, optimizando el uso de la memoria RAM y el
+procesamiento del procesador ARM.
+
 
