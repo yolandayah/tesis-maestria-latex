@@ -119,3 +119,117 @@ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 sudo sh -c "iptables-save > /etc/iptables.ipv4.cache"
 \end{lstlisting}
 \end{enumerate}
+
+\subsubsection{Puesta en Marcha}
+
+Finalmente, debemos asegurarnos de que el sistema reconozca la
+configuración de hostapd y reiniciar los servicios.
+
+\begin{enumerate}
+	\item Indica al sistema dónde está el archivo de hostapd:
+			\texttt{sudo nano /etc/default/hostapd}
+	\item Cambia la línea \texttt{\#DAEMON\_CONF=""} por
+			\texttt{DAEMON\_CONF="/etc/hostapd/hostapd.conf"}
+	\item Desbloquea el WiFi y reinicia:
+\begin{lstlisting}
+sudo rfkill unblock wlan
+sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+sudo systemctl start hostapd
+sudo systemctl restart dnsmasq
+\end{lstlisting}
+\end{enumerate}
+
+Finalmente se debería ver una red llamada "Red\_Raspberry" desde tu
+móvil o laptop. Al conectarte, la Raspberry o NUC te asignará una
+IP automáticamente y podrás navegar usando su DNS.
+
+
+\subsection{DNS local, sin salir a Internet}
+
+El programa \texttt{dnsmasq}, además de ser un servidor DHCP,
+permite crear un "DNS local".  Esto significa que se puede asignar
+nombres fáciles de recordar, como \texttt{mi-servidor.local} o
+\texttt{panel.control}, a direcciones IP específicas sin necesidad
+de salir a internet.
+
+
+\subsubsection{Asignar nombres mediante el archivo \texttt{/etc/hosts}}
+
+La forma más sencilla de que dnsmasq asigne nombres a IPs estáticas es
+leyendo el archivo de hosts local de la Raspberry Pi.
+
+\begin{enumerate}
+	\item Abre el archivo: \texttt{sudo nano /etc/hosts}
+	\item Añade tus dispositivos al final del archivo siguiendo este
+		formato: \texttt{IP\_del\_dispositivo  nombre\_deseado}. Por ejemplo:
+\begin{lstlisting}
+192.168.4.1   pi.local
+192.168.4.10  impresora.local
+192.168.4.15  camara.local
+\end{lstlisting}
+	\item Guarda y cierra (\texttt{Ctrl+O}, \texttt{Enter}, \texttt{Ctrl+X}).
+\end{enumerate}
+
+\subsubsection{Configurar dnsmasq para leer esos nombres}
+
+Ahora debemos asegurarnos de que \texttt{dnsmasq} esté escuchando
+y resolviendo esos nombres para todos los dispositivos conectados
+al Access Point.
+
+\begin{enumerate}
+	\item Edita el archivo de configuración: \texttt{sudo nano /etc/dnsmasq.conf}
+	\item Asegúrate de que estas líneas estén presentes (o añádelas):
+\begin{lstlisting}
+# Añade el dominio automáticamente a los nombres simples
+expand-hosts
+
+# Define el dominio local
+domain=local
+
+# Escucha solo en la interfaz de la red local
+interface=wlan0
+
+# Evita que se reenvíen nombres sin puntos a los servidores DNS externos
+domain-needed
+bogus-priv
+\end{lstlisting}
+\end{enumerate}
+
+\subsubsection{Asignación de nombres por DHCP (Opcional)}
+
+Si se quiere que los dispositivos que se conectan por DHCP reciban
+siempre la misma IP y tengan un nombre asignado automáticamente,
+añade esto al mismo archivo \texttt{/etc/dnsmasq.conf}:
+
+\begin{lstlisting}
+# Formato: dhcp-host=MAC_ADRESS,NOMBRE,IP,TIEMPO_DE_CONCESION
+dhcp-host=AA:BB:CC:DD:EE:FF,portatil-juan,192.168.4.50,infinite
+\end{lstlisting}
+
+Se puede ver las direcciones MAC de los dispositivos conectados
+actualmente ejecutando el comando \texttt{arp -a}.
+
+\subsubsection{Reiniciar y probar}
+
+Para que los cambios surtan efecto, reinicia el servicio:
+
+\begin{lstlisting}
+sudo systemctl restart dnsmasq
+\end{lstlisting}
+
+\textbf{Cómo Probarlo:}
+Desde cualquier dispositivo conectado a la red WiFi de tu Raspberry
+Pi o NUC (tu móvil o laptop), abre el navegador o la terminal e
+intenta hacer un "ping" al nombre que configuraste:
+
+\begin{lstlisting}
+ping pi.local
+\end{lstlisting}
+
+\textbf{Un detalle importante}: Si estás usando el dominio \texttt{.local},
+ten en cuenta que algunos sistemas operativos (como iOS o macOS)
+usan este dominio para el protocolo mDNS (Bonjour). Si ves que no
+resuelve bien, prueba cambiando el dominio a algo como \texttt{.home} o
+\texttt{.pi} en el archivo de configuración.
+
