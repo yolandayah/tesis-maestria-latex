@@ -7,6 +7,8 @@
 %% hacer texto aleatorio.
 \usepackage{lipsum}
 %%%%%%%%%%%%%%%%%%%
+\usepackage{listings}
+\usepackage{xcolor}
 \usepackage{biblatex}
 \addbibresource{referencias.bib}
 
@@ -17,6 +19,15 @@ de las materias de matemáticas a nivel medio superior}
 
 \grado{Maestro en Sistemas Computacionales}
 \director{Miriam Díaz Rodríguez}
+
+\lstset{
+  language=bash,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  showstringspaces=false,
+  frame=single, % Agrega un recuadro
+  backgroundcolor=\color{gray!10} % Fondo ligeramente gris
+}
 
 \begin{document}
 

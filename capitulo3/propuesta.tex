@@ -13,18 +13,109 @@
 %% Quita la siguiente linea es solo para hacer texto aleatorio.
 \lipsum[1]
 
-\subsection{Otro título cualquiera}
+\section{Configuración de parte del servidor}
 
-%% Quita la siguiente linea es solo para hacer texto aleatorio.
-\lipsum[2-4]
+El servidor es Linux bla bla bla
 
-\subsection{Otro más título cualquiera}
+\subsection{Punto de acceso inalámbrico}
 
-%% Quita la siguiente linea es solo para hacer texto aleatorio.
-\lipsum[5-6]
+Configurar una Raspberry Pi, o una NUC como punto de acceso inalámbrico
+(Access Point), servidor DHCP y DNS es útil para crear redes aisladas o
+laboratorios de pruebas. En nuestro caso para que los estudiantes no se
+conecten a internet y evitar el fraude académico.
 
-\section{Nueva sección}
+Para lograrlo, utilizaremos principalmente dos herramientas:
+\textbf{hostapd} (para el punto de acceso) y \textbf{dnsmasq}
+(para gestionar el DNS y DHCP de forma ligera).
 
-%% Quita la siguiente linea es solo para hacer texto aleatorio.
-\lipsum[1-3]
+\subsubsection{Preparación del Sistema}
 
+Antes de empezar, asegúrate de que tu sistema esté actualizado
+y de que tienes acceso por terminal (SSH o teclado).
+
+\begin{lstlisting}
+sudo apt update
+sudo apt upgrade
+sudo apt install hostapd dnsmasq
+\end{lstlisting}
+
+\subsubsection{Configurar una Dirección IP Estática para \texttt{wlan0}}
+
+Como la Raspberry Pi o la NUC actuará como el "servidor" de la red
+inalámbrica, necesita tener una dirección IP fija. Editaremos el
+archivo de configuración de red:
+
+\begin{enumerate}
+	\item Abre el archivo: \texttt{sudo nano /etc/dhcpcd.conf}
+  \item Añade lo siguiente al final del archivo:
+\begin{lstlisting}
+interface wlan0
+    static ip_address=192.168.4.1/24
+    nohook wpa_supplicant
+\end{lstlisting}
+\end{enumerate}
+
+Esto asigna la IP 192.168.4.1 a tu Raspberry Pi o NUC en la red inalámbrica.
+
+\subsubsection{Configurar el Servidor DHCP y DNS (\texttt{dnsmasq})}
+
+El software dnsmasq se encargará de asignar IPs a los dispositivos
+que se conecten y de resolver nombres de dominio.
+
+\begin{enumerate}
+	\item Renombra el archivo original por si acaso:
+		\texttt{sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig}
+	\item Crea uno nuevo: \texttt{sudo nano /etc/dnsmasq.conf}
+	\item Pega la siguiente configuración:
+\begin{lstlisting}
+interface=wlan0
+dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
+domain-needed
+bogus-priv
+# Servidores DNS externos (Google)
+server=8.8.8.8
+server=8.8.4.4
+\end{lstlisting}
+\end{enumerate}
+\textbf{Nota}: Aquí definimos que el rango de IPs para tus dispositivos
+será de la \texttt{.2} a la \texttt{.20}.
+
+\subsubsection{Configurar el Punto de Acceso (\texttt{hostapd})}
+
+Aquí es donde definimos el nombre de la red (SSID) y la contraseña.
+
+\begin{enumerate}
+	\item Crea el archivo: \texttt{sudo nano /etc/hostapd/hostapd.conf}
+	\item Configura los parámetros de tu red:
+\begin{lstlisting}
+interface=wlan0
+driver=nl80211
+ssid=Red_Raspberry
+hw_mode=g
+channel=7
+wmm_enabled=0
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+wpa=2
+wpa_passphrase=TuContraseniaSegura
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+\end{lstlisting}
+\end{enumerate}
+
+\subsubsection{Habilitar el Reenvío de Tráfico (IP Forwarding)}
+
+Para que los dispositivos conectados a la Raspberry puedan salir a internet a través del cable Ethernet de la Pi, debemos habilitar el "forwarding".
+
+\begin{enumerate}
+	\item Edita el archivo: \texttt{sudo nano /etc/sysctl.conf}
+	\item Busca y quita el \texttt{\#} de la línea: \texttt{net.ipv4.ip\_forward=1}
+	\item Aplica las reglas de NAT para que el tráfico fluya de
+		\texttt{wlan0} a \texttt{eth0}:
+\begin{lstlisting}
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo sh -c "iptables-save > /etc/iptables.ipv4.cache"
+\end{lstlisting}
+\end{enumerate}
