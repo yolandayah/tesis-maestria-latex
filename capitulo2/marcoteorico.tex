@@ -87,16 +87,28 @@ con la estructura organizada de Laravel, se garantiza una plataforma
 backend eficiente, segura y adaptable a futuras expansiones o
 requerimientos del sistema.
 
-\section{Plataforma de hardware utilizada}
+\section{Plataformas de Despliegue de Hardware: Arquitecturas ARM y x86}
 
-Para el despliegue físico y la ejecución del sistema, se seleccionó la
-computadora de placa única (SBC, por sus siglas en inglés Single Board
-Computer) Raspberry Pi. Este hardware de código abierto está diseñado
+Para la validación, despliegue físico y ejecución del sistema, se consideró
+un enfoque versátil basado en dos arquitecturas de hardware distintas:
+las computadoras de placa única (SBC, por sus siglas en inglés Single Board
+Computer) de arquitectura ARM y las plataformas de factor de forma
+pequeño (Mini PC) de arquitectura x86.  Esta dualidad garantiza la
+flexibilidad de la aplicación web y demuestra su viabilidad en diferentes
+escenarios de infraestructura.
+
+\subsection{Raspberry Pi como Plataforma de Despliegue}
+
+La plataforma Raspberry Pi (ver fig. \ref{fig:rpi4}),
+que es de código abierto, está diseñado
 sobre una arquitectura ARM y destaca por su tamaño compacto, bajo
 consumo energético y su capacidad para ejecutar sistemas operativos
 basados en Linux de manera nativa \parencite{raspberry_pi_2026}.
 
-\subsection{Raspberry Pi como Plataforma de Despliegue}
+\begin{figure}[ht]
+	{\centering \includegraphics[height=4cm]{img/rpi4.png} \par}
+	\caption{Raspberry Pi 4 modelo B} \label{fig:rpi4}
+\end{figure}
 
 En el contexto de este proyecto, la Raspberry Pi actúa como el servidor
 local (o nodo central), encargándose de alojar el servidor web, el
@@ -129,4 +141,38 @@ también es capaz de operar de manera fluida y eficiente en arquitecturas
 de hardware limitado, optimizando el uso de la memoria RAM y el
 procesamiento del procesador ARM.
 
+\subsection{Intel NUC / Plataformas x86 (Arquitectura Empresarial)}
 
+Como alternativa de mayor rendimiento y escalabilidad, el sistema está
+diseñado para ser desplegado de manera nativa en plataformas x86,
+utilizando dispositivos de factor de forma pequeño como las Intel NUC
+(Next Unit of Computing) \parencite{intel_nuc_2026} (ver fig. \ref{fig:nuc}).
+La inclusión de esta arquitectura en el proyecto aporta ventajas clave:
+
+\begin{figure}[ht]
+	{\centering \includegraphics[height=4cm]{img/nuc.png} \par}
+	\caption{Intel NUC (Next Unit of Computing)} \label{fig:nuc}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Mayor Capacidad de Procesamiento y Memoria}: A diferencia
+		de los procesadores ARM orientados al bajo consumo, las plataformas
+		x86 ofrecen procesadores de alto rendimiento (Intel Core o similares)
+		y soporte para mayores capacidades de memoria RAM y almacenamiento de
+		estado sólido (NVMe), permitiendo gestionar un volumen
+		significativamente más alto de peticiones concurrentes y consultas a
+		la base de datos.
+
+	\item \textbf{Compatibilidad de Grado Empresarial}: Al utilizar la
+		arquitectura estándar de los servidores comerciales (x86\_64), se
+		elimina cualquier barrera de compatibilidad con librerías compiladas
+		y entornos de contenedores avanzados (como Docker o Podman), facilitando
+		una transición directa hacia servidores en la nube o centros de datos
+		locales (on-premises).
+
+	\item \textbf{Versatilidad de Despliegue}: La combinación de PHP y
+		Laravel demuestra su portabilidad al operar de forma idéntica en una
+		Raspberry Pi de recursos limitados y en una Mini PC x86 de alto
+		rendimiento, lo que valida la viabilidad del software para escalar
+		orgánicamente según los requerimientos de la organización.
+\end{itemize}
