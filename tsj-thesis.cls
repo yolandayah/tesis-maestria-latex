@@ -4,13 +4,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{tsj-thesis}[2025/04/23 v1 TSJ Thesis format]
 
-\DeclareOption{openright}{\PassOptionsToClass{openright}{report} }
-\DeclareOption{openany}{\PassOptionsToClass{openany}{report} }
-\DeclareOption{twoside}{\PassOptionsToClass{twoside}{report} }
-\DeclareOption{oneside}{\PassOptionsToClass{oneside}{report} }
-\DeclareOption{fleqn}{\PassOptionsToClass{fleqn}{report} }
-\DeclareOption{leqno}{\PassOptionsToClass{leqno}{report} }
-\DeclareOption{openbib}{\PassOptionsToClass{openbib}{report} }
+\DeclareOption{openright}{\PassOptionsToClass{openright}{report}}
+\DeclareOption{openany}{\PassOptionsToClass{openany}{report}}
+\DeclareOption{twoside}{\PassOptionsToClass{twoside}{report}}
+\DeclareOption{oneside}{\PassOptionsToClass{oneside}{report}}
+\DeclareOption{fleqn}{\PassOptionsToClass{fleqn}{report}}
+\DeclareOption{leqno}{\PassOptionsToClass{leqno}{report}}
+\DeclareOption{openbib}{\PassOptionsToClass{openbib}{report}}
+\DeclareOption{notitlepage}{\PassOptionsToClass{notitlepage}{report}}
 
 \PassOptionsToPackage{T1}{fontenc}
 \PassOptionsToPackage{utf8}{inputenc}
@@ -26,6 +27,14 @@
 \RequirePackage{inputenc}
 \RequirePackage{titling}
 \RequirePackage{xcolor}
+\RequirePackage{hyperref}
+\RequirePackage{csquotes}
+
+\hypersetup{
+    colorlinks=true,   % True replaces the default ugly boxes around links with colored text
+    linkcolor=black,    % Sets the color for internal document links (TOC, figures, etc.)
+    linktoc=all        % Makes both the section text and the page number clickable
+}
 
 \newcommand{\grado}[1]{\newcommand{\thegrado}{#1}}
 \newcommand{\director}[1]{\newcommand{\thedirector}{#1}}
@@ -33,7 +42,7 @@
 
 \renewcommand{\maketitle}{
 \begin{titlepage}
-\pagenumbering{alph}\thispagestyle{empty}\noindent
+\thispagestyle{empty}\noindent
 %\includegraphics[width=\textwidth]{img/cabecera.pdf}
 %\textcolor{orange!50!black}{
 %\begin{center}
@@ -76,19 +85,28 @@ Zapopan, Jalisco, México \\[0.5\baselineskip] \thedate
 \end{titlepage}}
 
 \newenvironment{dedicatoria}
-{\cleardoublepage\null\vfill\thispagestyle{empty}}
+{\thispagestyle{empty}
+\chapter*{}
+\addcontentsline{toc}{chapter}{Dedicatoria}}
 {\vfill\null}
 
 \newenvironment{agradecimientos}
-{\cleardoublepage\null\vfill\thispagestyle{empty}
-\begin{center}\textbf{Agradecimientos}\end{center}}
+{\thispagestyle{empty}
+\chapter*{}
+\addcontentsline{toc}{chapter}{Agradecimientos}
+\begin{center}\Large\textbf{Agradecimientos}\end{center}}
 {\vfill\null}
 
-% page numbering %
-\pagenumbering{Roman}
-\newcommand{\frontmatter}{\cleardoublepage\pagenumbering{Roman}}
-\newcommand{\mainmatter}{\cleardoublepage\pagenumbering{arabic}}
-\newcommand\backmatter{\cleardoublepage}
+\renewenvironment{abstract}
+{\thispagestyle{empty}
+\chapter*{}
+\addcontentsline{toc}{chapter}{\abstractname}
+    \begin{center}
+        \bfseries \Large \abstractname
+    \end{center}
+}{\vfill\null}
 
-\normalsize
-\endinput
+% page numbering %
+\newcommand{\frontmatter}{\cleardoublepage\pagenumbering{roman}}
+\newcommand{\mainmatter}{\cleardoublepage\pagenumbering{arabic}}
+\newcommand\backmatter{\cleardoublepage\pagenumbering{alph}}
