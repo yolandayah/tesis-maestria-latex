@@ -30,15 +30,21 @@
 \RequirePackage{hyperref}
 \RequirePackage{csquotes}
 
-\hypersetup{
-    colorlinks=true,   % True replaces the default ugly boxes around links with colored text
-    linkcolor=black,    % Sets the color for internal document links (TOC, figures, etc.)
-    linktoc=all        % Makes both the section text and the page number clickable
-}
-
 \newcommand{\grado}[1]{\newcommand{\thegrado}{#1}}
 \newcommand{\director}[1]{\newcommand{\thedirector}{#1}}
 \newcommand{\codirector}[1]{\newcommand{\thecodirector}{#1}\newcommand*{\MYCODIRECTOR}{}}
+
+\hypersetup{
+    colorlinks=true,       % False = boxed links; True = colored text
+    linkcolor=black, %blue,   % Color of internal links (sections, figures)
+    citecolor=black, %green,  % Color of links to bibliography
+    filecolor=black, %magenta,% Color of file links
+    urlcolor=black,  %cyan,   % Color of external URLs
+    pdftitle={\thetitle},  % PDF metadata title
+    pdfauthor={\theauthor},% PDF metadata author
+    bookmarks=true,        % Show acrobat bookmarks bar
+    linktoc=all            % Links on both text and page number in TOC
+}
 
 \renewcommand{\maketitle}{
 \begin{titlepage}
