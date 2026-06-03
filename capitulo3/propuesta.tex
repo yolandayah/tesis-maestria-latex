@@ -6,7 +6,6 @@
 
 %% Quita la siguiente linea es solo para hacer texto aleatorio.
 \lipsum[1]
-\cite{knuth-fa}
 
 \section{Un título cualquiera}
 
@@ -25,8 +24,9 @@ laboratorios de pruebas. En nuestro caso para que los estudiantes no se
 conecten a internet y evitar el fraude académico.
 
 Para lograrlo, utilizaremos principalmente dos herramientas:
-\textbf{hostapd} (para el punto de acceso) y \textbf{dnsmasq}
-(para gestionar el DNS y DHCP de forma ligera).
+\textbf{hostapd} (para el punto de acceso) \cite{raspberrypi_hotspot_2026}
+\cite{malinen_hostapd_2025} y \textbf{dnsmasq} (para gestionar el
+DNS y DHCP de forma ligera) \cite{kelley_dnsmasq_2024}.
 
 \subsubsection{Preparación del Sistema}
 
@@ -147,11 +147,12 @@ IP automáticamente y podrás navegar usando su DNS.
 
 \subsection{DNS local, sin salir a Internet}
 
-El programa \texttt{dnsmasq}, además de ser un servidor DHCP,
+El programa \texttt{dnsmasq} \cite{kelley_dnsmasq_2024},
+además de ser un servidor DHCP,
 permite crear un "DNS local".  Esto significa que se puede asignar
 nombres fáciles de recordar, como \texttt{mi-servidor.local} o
 \texttt{panel.control}, a direcciones IP específicas sin necesidad
-de salir a internet.
+de salir a internet \cite{raspberrypi_forums}.
 
 
 \subsubsection{Asignar nombres mediante el archivo \texttt{/etc/hosts}}
