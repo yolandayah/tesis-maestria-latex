@@ -4,10 +4,19 @@
 \chapter{Marco Teórico}
 \label{ch:marcoteorico}
 
-%% Quita la siguiente linea es solo para hacer texto aleatorio.
-\lipsum[1]
+
 
 \section{Sistema web}
+
+Un sistema web (o aplicación web) es un software de aplicación que
+los usuarios pueden utilizar accediendo a un servidor web a través
+de internet o de una red local mediante un navegador del lado del
+cliente. A diferencia de las aplicaciones de escritorio tradicionales,
+que requieren ser instaladas de forma local en el hardware de cada
+dispositivo, los sistemas web centralizan el almacenamiento de datos
+y la lógica de negocio en un servidor, facilitando el acceso universal,
+la actualización inmediata y la portabilidad del
+sistema \parencite{pressman_2020}.
 
 \subsection{PHP (Hypertext Preprocessor)}
 
@@ -85,6 +94,41 @@ Al combinar la robustez y velocidad de PHP en su versión actual
 con la estructura organizada de Laravel, se garantiza una plataforma
 backend eficiente, segura y adaptable a futuras expansiones o
 requerimientos del sistema.
+
+\subsection{JavaScript (Lógica del Lado del Cliente)}
+
+Para complementar la arquitectura del sistema y gestionar la interactividad
+en la interfaz de usuario, se incorporó JavaScript. JavaScript es un
+lenguaje de programación de alto nivel, interpretado, dinámico y
+multiparadigma, cuyo propósito principal en este proyecto es ejecutar
+instrucciones directamente en el navegador web del usuario (entorno cliente)
+sin necesidad de saturar el servidor con peticiones redundantes
+\parencite{ecma_javascript_2026}.
+
+La integración de JavaScript dentro de las vistas renderizadas por
+Laravel responde a los siguientes criterios técnicos y de experiencia
+de usuario:
+
+\begin{itemize}
+	\item \textbf{Interactividad y Dinamismo en Tiempo Real}: Permite la
+		manipulación dinámica del Document Object Model (DOM), lo que
+		hace viable la actualización de elementos de la interfaz —como
+		formularios, gráficas o tablas de datos— de forma asíncrona mediante
+		técnicas como AJAX o la API Fetch, mejorando la fluidez de la aplicación.
+
+	\item \textbf{Optimización de Recursos del Servidor}: Al procesar tareas
+		menores en el cliente (como la validación previa de formularios, la
+		gestión de eventos de interfaz y formatos de datos), se reduce
+		significativamente la carga de procesamiento en el hardware de
+		despliegue (ya sea la Raspberry Pi o la plataforma x86), optimizando
+		el ancho de banda y los tiempos de respuesta globales.
+
+	\item \textbf{Compatibilidad Universal}: Al ser el estándar nativo de la
+		web, JavaScript garantiza que las funciones del cliente se ejecuten de
+		manera uniforme en cualquier navegador web moderno (Chrome, Firefox,
+		Edge, Safari) y dispositivo (móviles, tabletas o computadoras de
+		escritorio), asegurando la accesibilidad del sistema.
+\end{itemize}
 
 \section{Plataformas de Despliegue de Hardware: Arquitecturas ARM y x86}
 
