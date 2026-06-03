@@ -9,6 +9,7 @@
 %%%%%%%%%%%%%%%%%%%
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{csquotes}
 \usepackage{biblatex}
 \addbibresource{referencias.bib}
 
@@ -20,10 +21,9 @@ de las materias de matemáticas a nivel medio superior}
 \grado{Maestro en Sistemas Computacionales}
 \director{Miriam Díaz Rodríguez}
 
-\lstset{
+\lstdefinestyle{marcogris} {%
   language=bash,
   basicstyle=\ttfamily\small,
-  keywordstyle=\color{blue},
   showstringspaces=false,
   frame=single, % Agrega un recuadro
   backgroundcolor=\color{gray!10}, % Fondo ligeramente gris
@@ -35,6 +35,8 @@ de las materias de matemáticas a nivel medio superior}
   {¡}{{!`}}1  {¿}{{?`}}1
   {ñ}{{\~n}}1 {Ñ}{{\~N}}1
 }
+
+\lstset{style=marcogris}
 
 \begin{document}
 
