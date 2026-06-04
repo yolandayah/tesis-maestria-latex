@@ -35,15 +35,9 @@
 \newcommand{\codirector}[1]{\newcommand{\thecodirector}{#1}\newcommand*{\MYCODIRECTOR}{}}
 
 \hypersetup{
-    colorlinks=true,       % False = boxed links; True = colored text
-    linkcolor=black, %blue,   % Color of internal links (sections, figures)
-    citecolor=black, %green,  % Color of links to bibliography
-    filecolor=black, %magenta,% Color of file links
-    urlcolor=black,  %cyan,   % Color of external URLs
-    pdftitle={\thetitle},  % PDF metadata title
-    pdfauthor={\theauthor},% PDF metadata author
-    bookmarks=true,        % Show acrobat bookmarks bar
-    linktoc=all            % Links on both text and page number in TOC
+  hidelinks, % Removes all visible link styling (no colors, no borders)
+  bookmarks=true, % Show acrobat bookmarks bar
+  linktoc=all     % Links on both text and page number in TOC
 }
 
 \renewcommand{\maketitle}{
