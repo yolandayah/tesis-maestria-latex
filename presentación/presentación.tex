@@ -1,0 +1,72 @@
+% ex: ts=2 sw=2 sts=2 et filetype=tex
+% SPDX-License-Identifier: CC-BY-SA-4.0
+
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{Boadilla}
+
+\setbeamertemplate{navigation symbols}{}
+
+\graphicspath{{../img/}}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+%\usepackage{listings}
+%\usepackage{colortbl}
+\usepackage{tikz}
+%\usetikzlibrary{trees}
+\usepackage{beamercolorthemetsj}
+
+\title[Titulo versión corta]{Titulo de la Tesis versión larga}
+
+\author{Nombre del autor}
+
+\institute[TSJ Zapopan]
+{
+Tecnológico Superior de Jalisco\\
+unidad Zapopan\\
+\medskip
+\textit{autor\_email@zapopan.tecmm.edu.mx}
+}
+
+\logo{\includegraphics[height=1cm]{tsj.png}}
+
+\titlegraphic{
+    \includegraphics[width=4cm]{tecnm.png}
+    \includegraphics[width=4cm]{tsj.png}
+}
+\date{dia de mes de año}
+
+%------------------------------------------------------------
+%The next block of commands puts the table of contents at the
+%beginning of each section and highlights the current section:
+%\AtBeginSection[]
+%{
+%  \begin{frame}
+%    \frametitle{Contenido}
+%    \tableofcontents[currentsection]
+%  \end{frame}
+%}
+%------------------------------------------------------------
+
+\newcommand{\nologo}{\setbeamertemplate{logo}{}} % command to set the logo to nothing
+\newcommand{\pausa}{\pause} % Para usar una pausa en las presentaciones
+%\newcommand{\pausa}{}      % Para que NO salgan las pausas
+
+\begin{document}
+
+{
+\nologo
+\begin{frame}
+    \titlepage
+\end{frame}
+}
+
+\begin{frame}
+    \frametitle{Contenido}
+    \tableofcontents
+\end{frame}
+
+\input{contenido.tex}
+
+\end{document}
