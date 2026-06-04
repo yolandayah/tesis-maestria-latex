@@ -36,7 +36,6 @@
 
 \hypersetup{
   hidelinks, % Removes all visible link styling (no colors, no borders)
-  bookmarks=true, % Show acrobat bookmarks bar
   linktoc=all     % Links on both text and page number in TOC
 }
 
