@@ -4,45 +4,105 @@
 \section{Introducción}
 
 \begin{frame}[c]{Introducción}
-  \begin{enumerate}
-    \item Usa viñetas de preferencia
-    \item No uses tanto texto solo las ideas principales.
-  \end{enumerate}
+
+En la actualidad, la educación enfrenta el reto de adaptarse a
+entornos digitales cada vez más dinámicos, donde el uso de
+\textbf{Tecnologías de la Información y la Comunicación} (TIC) es
+fundamental para mejorar los procesos de \emph{enseñanza-aprendizaje}.
+
+\vspace{1em}
+La evolución tecnológica ha desplazado los métodos tradicionales
+(como la oralidad y los textos impresos) hacia la virtualidad.
 \end{frame}
 
 \section{Trabajos relacionados}
 
 \begin{frame}[c]{Trabajos relacionados}
-  \begin{columns}
-    \column{0.5\textwidth}
-      \begin{enumerate}
-        \item También puedes poner texto e imágenes
-        \item Usa solo ideas principales
-      \end{enumerate}
-    \column{0.5\textwidth}
-      \begin{center}
-        \includegraphics[width=5cm]{tsj.png}
-      \end{center}
-  \end{columns}
+
+Plataformas como \textbf{Google Classroom}, \textbf{Moodle} y
+los \emph{cursos en línea masivos y abiertos} o \textbf{MOOC} (acrónimo
+en inglés de \emph{massive open online courses}) han permitido
+ampliar el acceso a recursos educativos; sin embargo, aún existen
+desafíos importantes en la personalización del aprendizaje y la
+evaluación continua.
+
+  \vspace{1em}
+  \begin{center}
+    \includegraphics[height=1.5cm]{g-classroom.png}
+    \hspace{1em}
+    \includegraphics[height=1.5cm]{g-forms.png}
+    \hspace{1em}
+    \includegraphics[height=1.5cm]{ms-forms.png}
+    \hspace{1em}
+    \includegraphics[height=1.5cm]{canvas.png}
+    \hspace{1em}
+    \includegraphics[height=1.5cm]{moodle.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}[c]{Áreas de mejora}
+  \begin{itemize}
+    \item Los sistemas actuales \textbf{no} generan preguntas
+        a\textbf{utomáticas} o \textbf{aleatorias}.
+    \pausa
+    \item Las preguntas \textbf{casi siempre} son las mismas para
+        todos los estudiantes.
+    \begin{itemize}
+      \item Se pueden copiar las respuesta entre los alumnos
+      \item Se pueden copiar las preguntas y guardarlas para
+          el siguiente ciclo.
+    \end{itemize}
+    \pausa
+    \item Se necesita tener \textbf{acceso a Internet} para todos
+        los alumnos.
+    \begin{itemize}
+      \item Uso de PC o en rara vez en ceular.
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \section{Justificación}
 
 \begin{frame}[c]{Justificación}
-  \begin{enumerate}
-    \item La presentación solo es una guía para lo que estas hablando
+  \begin{itemize}
+    \item Crear un sistema que genere preguntas \textbf{automáticas} o
+        \textbf{aleatorias} de matemáticas.
     \pausa
-    \item No es para leer el contenido de cada página
-  \end{enumerate}
+    \item \textbf{Evitar la copia} entre alumnos al ser preguntas
+        diferentes.
+    \pausa
+    \item Acceso al sistema \textbf{sin necesidad} de Internet.
+  \end{itemize}
 \end{frame}
 
 \section{Objetivos}
 
-\begin{frame}[c]{Objetivos}
+\begin{frame}[c]{Objetivo general}
+  \begin{itemize}
+    \item Desarrollar un asistente virtual que permita la generación
+      y evaluación automática de ejercicios matemáticos para apoyar
+      la adquisición de competencias técnicas en estudiantes de
+      educación media superior.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Objetivos específicos}
   \begin{enumerate}
-    \item La presentación solo es una guía para lo que estas hablando
+    \item \label{itm:objetivo1} Desarrollar un sistema que realice exámenes
+      y ejercicios de manera autónoma y aleatoria.
     \pausa
-    \item No es para leer el contenido de cada página
+    \item \label{itm:objetivo2} Crear una herramienta que permita a los
+      profesores crear, modificar y administrar las pruebas y ejercicios de
+      aprendizaje.
+    \pausa
+    \item \label{itm:objetivo3} Crear una herramienta que permita a los
+      alumnos realizar sus exámenes y ejercicios.
+    \pausa
+    \item \label{itm:objetivo4} Crear un ambiente seguro para la realización
+      de los exámenes.
+    \pausa
+    \item \label{itm:objetivo5} Crear un sistema que no requiera la conexión
+      a Internet para que se conecten los alumnos.
   \end{enumerate}
 \end{frame}
 
@@ -50,47 +110,226 @@
 
 \begin{frame}[c]{Marco Teórico}
   \begin{enumerate}
-    \item Puedes poner formulas si es necesario
+    \item Uso del framework Laravel
+      \begin{enumerate}
+        \item Usando el lenguaje PHP
+      \end{enumerate}
     \pausa
-    \item o imágenes que explican la idea
+    \item Uso de JavaScript para hacer ejercicios del lado del cliente
+      \begin{enumerate}
+        \item \textbf{MathJax} para el despliegue de LaTeX, MathML y
+          AsciiMath
+      \end{enumerate}
+    \pausa
+    \item Uso de una Raspberry Pi o una NUC como servidor de red local
   \end{enumerate}
+
+  \vspace{1em}
+  \begin{center}
+    \includegraphics[height=2cm]{rpi4.png}
+    \hspace{3em}
+    \includegraphics[height=2cm]{nuc.png}
+  \end{center}
 \end{frame}
 
 \section{Propuesta}
 
 \begin{frame}[c]{Propuesta}
   \begin{enumerate}
-    \item También es bueno usar diagramas que indiquen la idea
+    \item Creación de una aplicación web que no necesite conexión a
+      Internet.
+    \pausa
+    \item Uso de Hardware de bajo consumo como la Raspberry Pi o la NUC para
+      actuar como servidor local.
+      \begin{itemize}
+        \item El tamaño pequeño ayuda a su transportación y manejo en el
+          salón.
+        \item Usar este mismo equipo como punto de acceso inalámbrico
+          (un hostpot), para acceder al sistema.
+      \end{itemize}
   \end{enumerate}
-  \begin{center}
-    \includegraphics[width=5cm]{tecnm.png}
-  \end{center}
 \end{frame}
 
 \section{Resultados}
 
-\begin{frame}[c]{Resultados}
+\begin{frame}[c]{Pantalla de inicio}
+  \begin{columns}
+    \column{0.3\textwidth}
+      \begin{enumerate}
+        \item Se creo un sistema responsivo (para PC y moviles)
+        \item Con la característica de utilizar dos estilos: claro y oscuro
+      \end{enumerate}
+    \column{0.7\textwidth}
+      \begin{center}
+        \includegraphics[width=5cm]{app/01-inicio.png}
+        \includegraphics[width=5cm]{app/02-inicio.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de registro}
+  \begin{columns}
+    \column{0.3\textwidth}
+      \begin{enumerate}
+        \item Capacidad de registrar nuevos usuarios
+      \end{enumerate}
+    \column{0.7\textwidth}
+      \begin{center}
+        \includegraphics[width=4.5cm]{app/03-registro.png}
+        \includegraphics[width=4.5cm]{app/04-registro.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de inicio de sesión}
   \begin{columns}
     \column{0.5\textwidth}
+      \begin{enumerate}
+        \item Capacidad de iniciar sesión con usuario o email
+      \end{enumerate}
+    \column{0.5\textwidth}
       \begin{center}
-        \includegraphics[width=5cm]{tsj.png}
+        \includegraphics[width=6cm]{app/05-isesion.png}
       \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de Panel principal alumno}
+  \begin{columns}
     \column{0.5\textwidth}
       \begin{enumerate}
-        \item Muestra tus resultados e pocas palabras o en imágenes.
-        \pausa
-        \item Demuestra lo que hiciste en tu proyecto.
+        \item Al iniciar el alumno vera sus materias/cursos
+            al que esta inscrito
       \end{enumerate}
+    \column{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=6cm]{app/07-dashboard.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de Panel principal administrador}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{enumerate}
+        \item El administrador podrá manipular los usuarios y
+          las asignaturas
+      \end{enumerate}
+    \column{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=6cm]{app/06-dashboard.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de usuarios}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{enumerate}
+        \item Lista de usuarios y la capacidad de modificarlos
+      \end{enumerate}
+    \column{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=6cm]{app/08-usuarios.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de asignaturas}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{enumerate}
+        \item Lista de asignaturas y su manipulación
+      \end{enumerate}
+    \column{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=6cm]{app/09-asignaturas.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de grupos de las asignaturas}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{enumerate}
+        \item Cada asignatura tiene sus grupos
+        \item Cada grupo tiene un maestro asignado
+      \end{enumerate}
+    \column{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=7cm]{app/10-algebra.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de alumnos registrados}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{enumerate}
+        \item Cada grupo tiene sus alumnos
+      \end{enumerate}
+    \column{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=6cm]{app/11-grupo17.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de ejemplo de ejercicio}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{enumerate}
+        \item Ejercicio de resolver una ecuación cuadrática
+      \end{enumerate}
+    \column{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=4.5cm]{app/12-ecua-cuadra.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de ejemplo de ejercicio}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{enumerate}
+        \item Mensaje de error
+      \end{enumerate}
+    \column{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=4.5cm]{app/13-ecua-cuadra.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{Pantalla de ejemplo de ejercicio}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{enumerate}
+        \item Mensaje de éxito
+      \end{enumerate}
+    \column{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=4.5cm]{app/14-ecua-cuadra.png}
+      \end{center}
   \end{columns}
 \end{frame}
 
 \section{Conclusiones}
 
 \begin{frame}[c]{Conclusiones}
+Este sistema nos da las siguientes ventajas:
   \begin{enumerate}
-    \item Sintetiza lo realizado hasta el momento.
-    \pausa
-    \item Anota brevemente las hipótesis validadas.
+    \item Los alumnos \textbf{no están conectados a Internet}, para usar la
+      IA o google para hacer trampa.
+  \pausa
+  \item \textbf{No se necesita Internet} para usar el sistema
+  \pausa
+  \item Los \textbf{ejercicios} y \textbf{exámenes} se generan y califican
+    \textbf{automáticamente}
+  \pausa
+  \item Las preguntas son \textbf{diferentes} para cada alumno
+  \pausa
+  \item Los alumnos pueden usar una PC o su propio celular
   \end{enumerate}
 \end{frame}
 
@@ -98,12 +337,18 @@
 
 \begin{frame}[c]{Trabajo futuro}
   \begin{enumerate}
-    \item Aquí pones las cosas que se pueden continuar con tu trabajo
-    \item Tu trabajo es la base para otros trabajos futuros de otros
-      estudiantes.
+    \item Exportar las calificaciones a Excel o CSV.
+    \item Hacer respaldos en la nube cuando se requiera.
+    \item Conectarlos con alguna otra plataforma como Google Classroom.
+    \item Importar nuevas preguntas.
+    \item Ademas de JavaScrilpt utilizar otros backends.
+    \item Alojarlo en un sitio web en internet para que haga ejercicios.
   \end{enumerate}
 \end{frame}
 
 \begin{frame}[c]{Gracias}
-    ¿Preguntas?
+  ¿Preguntas?
+  \begin{itemize}
+    \item El código se encuentra en: https://github.com/yolandayah/emilie
+  \end{itemize}
 \end{frame}
